@@ -1,8 +1,12 @@
 {
   "name": "http-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Javascript http parser for Buffers.",
   "main": "lib/http-parser.js",
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/OniOni/http-parser.git"
+  },
   "scripts": {
     "test": ""
   },
