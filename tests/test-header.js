@@ -44,6 +44,7 @@ var test = function() {
   }
   console.timeEnd("dumping-response-header-"+count);
 
+
   var fs = require('fs'),
     p = require('path');
   var hs = JSON.parse(fs.readFileSync(p.resolve(__dirname, "./example-headers.json")));
@@ -54,6 +55,19 @@ var test = function() {
     var header = new HttpHeader(buff);
   }
   console.timeEnd("parsing-request-header-"+count);
+
+  header.set('uri', '/highway/to/hell');
+  header.set('method', 'POST');
+
+  console.time("dumping-request-"+count);
+  for (var i = 0; i < count; i++) {
+    var b = header.toBuffer();
+  }
+  console.timeEnd("dumping-request-"+count); 
+
+  console.log("-Request----------")
+  console.log(header.toBuffer().toString().replace(" ", "_"));
+  console.log("------------------")
 
 
   buff = new Buffer(hs.response);
@@ -73,6 +87,9 @@ var test = function() {
   }
   console.timeEnd("dumping-response-"+count); 
 
+  console.log("-Response---------")
+  console.log(header.toBuffer().toString());
+  console.log("------------------")
 }
 
 test();
